@@ -1,0 +1,31 @@
+To understand MealProfile.txt:
+//////////////////////////////////////
+First line is the name of the dish, the second is the meal profile.
+
+The meal profile is as follows:
+-First number is the number of days the meal can be batch cooked for.
+-The second number is if a tin of tuna / salmon is required.
+-The third number to sixth number is a profile on a specific ingredient, with the first number of the profile being binary for if its used in the dish (0 = not used, 1 = used).
+The last three numbers for how many grams it contains, with each profile being in the following order;
+/ Meat (chicken)
+/ Pasta
+/ Rice
+/ Noodles
+
+-The seventh number is the Vegetable profile. This is binary for if it is included in the meal or not (0 = not used, 1 = used). The profile is as follows:
+/ Onion
+/ Bell Pepper
+/ Garlic
+/ Chopped Tomatoes
+/ Cherry Tomatoes
+
+-The eight number is the Misc profile. This is binary for if it is included in the meal or not (0 = not used, 1 = used). The profile is as follows:
+/ Eggs
+/ Cheese
+/ Mayo
+/ Sour Cream
+/ Double Cream
+/ Pasta Sauce
+/ Curry Sauce
+/ Soy Sauce
+/ Coconut Milk
