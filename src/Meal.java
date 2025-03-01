@@ -7,31 +7,27 @@
 
 public class Meal {
     // Attribute setup
-    private String meal_name;
-    private int numOfDays;
-    private boolean cannedFish;
-    private boolean meat;
-    private int meatGrams;
-    private boolean pasta;
-    private int pastaGrams;
-    private boolean rice;
-    private int riceGrams;
-    private boolean noodles;
-    private int noodlesGrams;
-    private boolean onion;
-    private boolean bellPepper;
-    private boolean garlic;
-    private boolean choppedTomatoes;
-    private boolean cherryTomatoes;
-    private boolean eggs;
-    private boolean cheese;
-    private boolean mayo;
-    private boolean sourCream;
-    private boolean doubleCream;
-    private boolean pastaSauce;
-    private boolean currySauce;
-    private boolean soySauce;
-    private boolean coconutMilk;
+    private final String meal_name;
+    private final int numOfDays;
+    private final boolean cannedFish;
+    private final int meatGrams;
+    private final int pastaGrams;
+    private final int riceGrams;
+    private final int noodlesGrams;
+    private final boolean onion;
+    private final boolean bellPepper;
+    private final boolean garlic;
+    private final boolean choppedTomatoes;
+    private final boolean cherryTomatoes;
+    private final boolean eggs;
+    private final boolean cheese;
+    private final boolean mayo;
+    private final boolean sourCream;
+    private final boolean doubleCream;
+    private final boolean pastaSauce;
+    private final boolean currySauce;
+    private final boolean soySauce;
+    private final boolean coconutMilk;
 
     /**
      * Constructor
@@ -41,30 +37,30 @@ public class Meal {
      */
     public Meal(String name, String profile){
         this.meal_name = name;
-        this.numOfDays = (int) profile.charAt(0);
-        this.cannedFish = (int) profile.charAt(2) != 0;
-        this.meat = (int) profile.charAt(4) != 0;
-        this.meatGrams = this.meat ? (Integer.parseInt(profile.substring(5,8))) : 0;
-        this.pasta = (int) profile.charAt(9) != 0;
-        this.pastaGrams = this.pasta ? (Integer.parseInt(profile.substring(10,13))) : 0;
-        this.rice = (int) profile.charAt(14) != 0;
-        this.riceGrams = this.rice ? (Integer.parseInt(profile.substring(15,18))) : 0;
-        this.noodles = (int) profile.charAt(19) != 0;
-        this.noodlesGrams = this.noodles ? (Integer.parseInt(profile.substring(20,23))) : 0;
-        this.onion = (int) profile.charAt(24) != 0;
-        this.bellPepper = (int) profile.charAt(25) != 0;
-        this.garlic = (int) profile.charAt(26) != 0;
-        this.choppedTomatoes = (int) profile.charAt(27) != 0;
-        this.cherryTomatoes = (int) profile.charAt(28) != 0;
-        this.eggs = (int) profile.charAt(30) != 0;
-        this.cheese = (int) profile.charAt(31) != 0;
-        this.mayo = (int) profile.charAt(32) != 0;
-        this.sourCream = (int) profile.charAt(33) != 0;
-        this.doubleCream = (int) profile.charAt(34) != 0;
-        this.pastaSauce = (int) profile.charAt(35) != 0;
-        this.currySauce = (int) profile.charAt(36) != 0;
-        this.soySauce = (int) profile.charAt(37) != 0;
-        this.coconutMilk = (int) profile.charAt(38) != 0;
+        this.numOfDays = Character.getNumericValue(profile.charAt(0));
+        this.cannedFish = Character.getNumericValue(profile.charAt(2)) != 0;
+        boolean meat = Character.getNumericValue(profile.charAt(4)) != 0;
+        this.meatGrams = meat ? (Integer.parseInt(profile.substring(5,8))) : 0;
+        boolean pasta = Character.getNumericValue(profile.charAt(9)) != 0;
+        this.pastaGrams = pasta ? (Integer.parseInt(profile.substring(10,13))) : 0;
+        boolean rice = Character.getNumericValue(profile.charAt(14)) != 0;
+        this.riceGrams = rice ? (Integer.parseInt(profile.substring(15,18))) : 0;
+        boolean noodles = Character.getNumericValue(profile.charAt(19)) != 0;
+        this.noodlesGrams = noodles ? (Integer.parseInt(profile.substring(20,23))) : 0;
+        this.onion = Character.getNumericValue(profile.charAt(24)) != 0;
+        this.bellPepper = Character.getNumericValue(profile.charAt(25)) != 0;
+        this.garlic = Character.getNumericValue(profile.charAt(26)) != 0;
+        this.choppedTomatoes = Character.getNumericValue(profile.charAt(27)) != 0;
+        this.cherryTomatoes = Character.getNumericValue(profile.charAt(28)) != 0;
+        this.eggs = Character.getNumericValue(profile.charAt(30)) != 0;
+        this.cheese = Character.getNumericValue(profile.charAt(31)) != 0;
+        this.mayo = Character.getNumericValue(profile.charAt(32)) != 0;
+        this.sourCream = Character.getNumericValue(profile.charAt(33)) != 0;
+        this.doubleCream = Character.getNumericValue(profile.charAt(34)) != 0;
+        this.pastaSauce = Character.getNumericValue(profile.charAt(35)) != 0;
+        this.currySauce = Character.getNumericValue(profile.charAt(36)) != 0;
+        this.soySauce = Character.getNumericValue(profile.charAt(37)) != 0;
+        this.coconutMilk = Character.getNumericValue(profile.charAt(38)) != 0;
 
 
     }
