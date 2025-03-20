@@ -17,21 +17,19 @@ public class ShibaChef {
     /**
      * Combines two {@link ArrayList}s of {@link String}s by alternating their elements line by line.
      * <p>
-     * For each index from 0 to {@code arrayLength} (inclusive), this method appends the element
-     * at that index from {@code array1} followed by the corresponding element from {@code array2},
+     * For each index from 0 to {@code numberOfMeals} (inclusive), this method appends the element
+     * at that index from {@code mealNames} followed by the corresponding element from {@code mealProfiles},
      * each separated by a newline character.
      * <p>
      * The resulting string is trimmed of trailing whitespace before being returned.
      *
-     * @param array1      the first list of strings
-     * @param array2      the second list of strings
-     * @return a combined string with alternating elements from {@code array1} and {@code array2},
+     * @return a combined string with alternating elements from {@code mealNames} and {@code mealProfiles},
      *         each separated by newlines
      */
-    private static String combineStringArrays(ArrayList<String> array1, ArrayList<String> array2){
+    private static String combineStringArrays(){
         String output = "";
         for(int i = 0; i < numberOfMeals; i++){
-            output += array1.get(i) + "\n" + array2.get(i) + "\n";
+            output += mealNames.get(i) + "\n" + mealProfiles.get(i) + "\n";
         }
         return output.trim();
     }
@@ -43,10 +41,9 @@ public class ShibaChef {
      * will be overwritten. If an error occurs during writing, an appropriate error
      * message is printed to the console.
      *
-     * @param file        the path to the file where content should be written
      * @param fileContent the content to write to the file
      */
-    private static void writeToFile(String file, String fileContent){
+    private static void writeToFile(String fileContent){
         try (FileWriter writer = new FileWriter(file)){
             writer.write(fileContent);
         }
@@ -65,9 +62,8 @@ public class ShibaChef {
      * <p>
      * If an I/O error occurs during reading, an error message is printed to the console.
      *
-     * @param file the path of the file to be read
      */
-    private static void readFile(String file){
+    private static void readFile(){
         int i = 0;
         String line;
         try(BufferedReader reader = new BufferedReader(new FileReader(file))){
