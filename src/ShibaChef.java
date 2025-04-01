@@ -5,7 +5,7 @@ import java.util.ArrayList;
  * ShibaChef is a personal meal planner and shopping list generator.
  * 
  * @author Anthony Silvester
- * @version 0.1.4
+ * @version 0.1.5
  */
 public class ShibaChef {
     // Variables used in ShibaChef.
@@ -60,10 +60,17 @@ public class ShibaChef {
      * to the {@code mealProfiles} list. This assumes that the file contains pairs of
      * meal names and corresponding meal profiles in alternating lines.
      * <p>
+     * {@code mealNames}, {@code numberOfMeals} and {@code mealProfiles} are all reset
+     * upon calling the method in case multiple calls are made to read the file during
+     * runtime.
+     * <p>
      * If an I/O error occurs during reading, an error message is printed to the console.
      *
      */
     private static void readFile(){
+        mealNames.clear();
+        mealProfiles.clear();
+        numberOfMeals = 0;
         int i = 0;
         String line;
         try(BufferedReader reader = new BufferedReader(new FileReader(file))){
@@ -81,6 +88,42 @@ public class ShibaChef {
         catch (IOException e) {
             System.out.println("Error Reading file: "  + e.getMessage());
         }
+    }
+
+    /**
+     * Adds a new meal to the meal list if the provided meal profile matches the expected format.
+     * Updates text file and variables in the program.
+     * <p>
+     * The meal profile must follow the format:
+     * {@code ^\d [01] [01]\d{3} [01]\d{3} [01]\d{3} [01]\d{3} [01]{5} [01]{9}$}.
+     * </p>
+     *
+     * @param mealName    The name of the meal to be added.
+     * @param mealProfile A formatted string representing the meal profile.
+     *                    The expected format consists of:
+     *                    <ul>
+     *                        <li>One digit (0-9) - Number of days meal is made for.</li>
+     *                        <li>One binary digit (0 or 1) - If the meal uses tinned Tuna/Salmon</li>
+     *                        <li>Four groups of a binary digit followed by three digits (e.g., "1300") -
+     *                       displays if meat, pasta, rice or noddles are used (respectively), and how many grams.</li>
+     *                        <li>A five-digit binary sequence - Vegetable profile</li>
+     *                        <li>A nine-digit binary sequence - Misc items profile</li>
+     *                    </ul>
+     *                    Example: {@code "3 0 1300 1400 0000 0000 11010 010001000"}
+     * @throws IllegalArgumentException if the meal profile format is incorrect.
+     */
+    private static void addNewMeal(String mealName, String mealProfile){
+        String regex = "^\\d [01] [01]\\d{3} [01]\\d{3} [01]\\d{3} [01]\\d{3} [01]{5} [01]{9}$";
+        if(mealProfile.matches(regex)){
+            mealNames.add(mealName);
+            mealProfiles.add(mealProfile);
+            numberOfMeals++;
+            writeToFile(combineStringArrays());
+        }
+        else{
+            throw new IllegalArgumentException("Profile is not in the correct format.");
+        }
+
     }
 
     public static void main(String[] args){
