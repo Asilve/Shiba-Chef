@@ -5,7 +5,7 @@ import java.util.ArrayList;
  * ShibaChef is a personal meal planner and shopping list generator.
  * 
  * @author Anthony Silvester
- * @version 0.1.5
+ * @version 0.1.6
  */
 public class ShibaChef {
     // Variables used in ShibaChef.
@@ -13,6 +13,7 @@ public class ShibaChef {
     static int numberOfMeals = 0;
     static ArrayList<String> mealNames = new ArrayList<>();
     static ArrayList<String> mealProfiles = new ArrayList<>();
+    static ArrayList<Meal> meals = new ArrayList<>();
 
     /**
      * Combines two {@link ArrayList}s of {@link String}s by alternating their elements line by line.
@@ -58,7 +59,8 @@ public class ShibaChef {
      * Even-numbered lines (starting from index 0) are added to the {@code mealNames} list
      * and increment the {@code numberOfMeals} counter. Odd-numbered lines are added
      * to the {@code mealProfiles} list. This assumes that the file contains pairs of
-     * meal names and corresponding meal profiles in alternating lines.
+     * meal names and corresponding meal profiles in alternating lines. Populates {@code meals}
+     * once file reading has been finished.
      * <p>
      * {@code mealNames}, {@code numberOfMeals} and {@code mealProfiles} are all reset
      * upon calling the method in case multiple calls are made to read the file during
@@ -72,6 +74,7 @@ public class ShibaChef {
         mealProfiles.clear();
         numberOfMeals = 0;
         int i = 0;
+        meals.clear();
         String line;
         try(BufferedReader reader = new BufferedReader(new FileReader(file))){
             while((line = reader.readLine()) != null){
@@ -88,6 +91,7 @@ public class ShibaChef {
         catch (IOException e) {
             System.out.println("Error Reading file: "  + e.getMessage());
         }
+        generateMeals();
     }
 
     /**
@@ -118,12 +122,35 @@ public class ShibaChef {
             mealNames.add(mealName);
             mealProfiles.add(mealProfile);
             numberOfMeals++;
+            meals.add(new Meal(mealName, mealProfile));
             writeToFile(combineStringArrays());
         }
         else{
             throw new IllegalArgumentException("Profile is not in the correct format.");
         }
 
+    }
+
+    /**
+     * Generates a list of {@code Meal} objects from stored meal names and meal profiles.
+     * <p>
+     * Each meal profile must match the expected format:
+     * {@code ^\d [01] [01]\d{3} [01]\d{3} [01]\d{3} [01]\d{3} [01]{5} [01]{9}$}.
+     * If a meal profile does not conform to this format, an {@code IllegalArgumentException} is thrown.
+     * </p>
+     *
+     * @throws IllegalArgumentException if any meal profile does not match the expected format.
+     */
+    private static void generateMeals(){
+        String regex = "^\\d [01] [01]\\d{3} [01]\\d{3} [01]\\d{3} [01]\\d{3} [01]{5} [01]{9}$";
+        for (int i = 0; i < numberOfMeals; i++){
+            if(mealProfiles.get(i).matches(regex)){
+                meals.add(new Meal(mealNames.get(i), mealProfiles.get(i)));
+            }
+            else {
+                throw new IllegalArgumentException("Profile is not in the correct format.");
+            }
+        }
     }
 
     public static void main(String[] args){

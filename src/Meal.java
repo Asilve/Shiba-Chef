@@ -62,7 +62,6 @@ public class Meal {
         this.soySauce = Character.getNumericValue(profile.charAt(37)) != 0;
         this.coconutMilk = Character.getNumericValue(profile.charAt(38)) != 0;
 
-
     }
 
     /**
