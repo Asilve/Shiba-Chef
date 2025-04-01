@@ -20,8 +20,8 @@ This project is being developed in **Java**, as I am currently learning it for u
 * Sound effects for UI interactions.
 
 🔧 **Current To-Do List**
-* Implement Meal class.
-* Implement File Manipulation for meal storage.
+* ~~Implement Meal class.~~
+* ~~Implement File Manipulation for meal storage.~~
 * Implement User input for number of days.
 * Implement Random meal generator.
 * Implement Shopping list generator.
