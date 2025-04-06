@@ -1,14 +1,11 @@
 import java.io.*;
-import java.util.ArrayList;
-import java.util.NoSuchElementException;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * ShibaChef is a personal meal planner and shopping list generator.
  * 
  * @author Anthony Silvester
- * @version 0.2.0
+ * @version 0.2.1
  */
 public class ShibaChef {
     // Variables used in ShibaChef.
@@ -17,6 +14,7 @@ public class ShibaChef {
     static ArrayList<String> mealNames = new ArrayList<>();
     static ArrayList<String> mealProfiles = new ArrayList<>();
     static ArrayList<Meal> meals = new ArrayList<>();
+    static ArrayList<Meal> selectedMeals = new ArrayList<>();
 
     /**
      * Combines two {@link ArrayList}s of {@link String}s by alternating their elements line by line.
@@ -202,6 +200,41 @@ public class ShibaChef {
                 return daySplit;
             default:
                 throw new NoSuchElementException("No valid number was given. Try again.");
+        }
+    }
+
+    /**
+     * Randomly selects meals from the list of available meals based on the provided day split.
+     * <p>
+     * For each entry in the {@code mealSplit} array, the method looks for a {@code Meal} object
+     * that matches the required number of batch-cook days. It ensures no duplicate meals are selected.
+     * </p>
+     * <p>
+     * The list of meals is shuffled before selection to ensure randomness.
+     * If no valid meal is found for a given day split, a message is printed to the console.
+     * </p>
+     *
+     * @param mealSplit an array of integers representing how many days each selected meal should cover
+     */
+    private static void generateRandomMeals(int[] mealSplit){
+        for(int mealNum : mealSplit){
+            int index = 0;
+            boolean foundMeal = false;
+            Collections.shuffle(meals);
+
+            while(!foundMeal && index < numberOfMeals){
+                Meal meal = meals.get(index);
+                if(meal.getNumOfDays() == mealNum && !selectedMeals.contains(meal)){
+                    foundMeal = true;
+                    selectedMeals.add(meal);
+                }
+                else{
+                    index++;
+                }
+            if(!foundMeal){
+                System.out.println("Could not find valid meal to batch cook for " + mealNum + " Days.");
+            }
+            }
         }
     }
 
