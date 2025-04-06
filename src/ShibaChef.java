@@ -1,11 +1,14 @@
 import java.io.*;
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
+import java.util.Random;
+import java.util.Scanner;
 
 /**
  * ShibaChef is a personal meal planner and shopping list generator.
  * 
  * @author Anthony Silvester
- * @version 0.1.6
+ * @version 0.2.0
  */
 public class ShibaChef {
     // Variables used in ShibaChef.
@@ -150,6 +153,55 @@ public class ShibaChef {
             else {
                 throw new IllegalArgumentException("Profile is not in the correct format.");
             }
+        }
+    }
+
+    /**
+     * Splits a given total number of days into smaller segments for meal planning.
+     * <p>
+     * The method returns an array of integers representing how the days should be grouped.
+     * For example, if {@code numberOfDays} is 4, the method returns {@code [2, 2]}.
+     * </p>
+     * <p>
+     * For 6 days, the split is randomized between {@code [2, 2, 2]} and {@code [3, 3]}.
+     * </p>
+     *
+     * @param numberOfDays the total number of days to be split (accepted values: 2–7)
+     * @return an array of integers representing how the days are split
+     * @throws NoSuchElementException if the provided number of days is not supported
+     */
+    private static int[] getNumberOfDays(int numberOfDays){
+        int[] daySplit;
+
+        switch (numberOfDays){
+            case 2:
+                daySplit = new int[]{2};
+                return daySplit;
+            case 3:
+                daySplit = new int[]{3};
+                return daySplit;
+            case 4:
+                daySplit = new int[]{2,2};
+                return daySplit;
+            case 5:
+                daySplit = new int[]{2,3};
+                return daySplit;
+            case 7:
+                daySplit = new int[]{2,2,3};
+                return daySplit;
+            case 6:
+                Random random = new Random();
+                int number = random.nextInt(0,2);
+
+                if(number == 0){
+                    daySplit = new int[]{2,2,2};
+                }
+                else {
+                    daySplit = new int[]{3,3};
+                }
+                return daySplit;
+            default:
+                throw new NoSuchElementException("No valid number was given. Try again.");
         }
     }
 
