@@ -10,7 +10,7 @@ ShibaChef is my answer to this issue - it generates meals I can batch-cook over 
 This project is being developed in **Java**, as I am currently learning it for university. Building ShibaChef allows me to further strengthen my Java skills and experiment with concepts beyond my coursework.
 
 #### Project Status
-🚧 Currently in Development - Features and Intallation details will be updated as progress is made.
+🚧 Currently in Development - Features and Installation details will be updated as progress is made.
 
 #### Planned Features and To-Do List
 ✅ **Planned Features:**
@@ -22,10 +22,10 @@ This project is being developed in **Java**, as I am currently learning it for u
 🔧 **Current To-Do List**
 * ~~Implement Meal class.~~
 * ~~Implement File Manipulation for meal storage.~~
-* Implement User input for number of days.
-* Implement Random meal generator.
+* ~~Implement User input for number of days.~~
+* ~~Implement Random meal generator.~~
 * Implement Shopping list generator.
-* Source art / assets.
+* ~~Source art / assets.~~
 * Develop GUI.
 * Implement sound effects.
 * Create .exe
@@ -50,6 +50,8 @@ ShibaChef is designed for personal use, But if I ever wanted to make it more gen
 Developer: Anthony Silvester / Asilve
 
 Currently, I am the sole developer of this project. Contributions are welcome and will be credited here.
+
+Some art assets made by ToffeeCraft: https://toffeecraft.itch.io/
 
 ## License
 MIT License.
