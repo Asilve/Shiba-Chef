@@ -18,7 +18,7 @@ abstract class ShibaWindow extends JFrame {
      */
     ShibaWindow(Image background, Image icon){
         // Setting Window / Frame data
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setResizable(false);
         this.setTitle("ShibaChef");
         this.setIconImage(icon);

@@ -239,5 +239,6 @@ public class ShibaChef {
     }
 
     public static void main(String[] args){
+        new MainMenu();
     }
 }
