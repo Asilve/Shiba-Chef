@@ -13,5 +13,6 @@ public class NewMeal extends ShibaWindow{
 
         this.pack();
         this.setVisible(true);
+        setLocationRelativeTo(null);
     }
 }

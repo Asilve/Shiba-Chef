@@ -239,6 +239,6 @@ public class ShibaChef {
     }
 
     public static void main(String[] args){
-        new Days();
+        new MainMenu();
     }
 }

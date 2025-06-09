@@ -11,6 +11,9 @@ import java.awt.event.ActionListener;
  */
 public class MainMenu extends ShibaWindow{
 
+    /**
+     * Constructor
+     */
     MainMenu(){
         // Generates a new frame and creates image variable for the button.
         super(new ImageIcon("assets/Art/Background-Main.png").getImage(), new ImageIcon("assets/Art/Hat-Icon.png").getImage());
@@ -51,6 +54,7 @@ public class MainMenu extends ShibaWindow{
         // Packs and displays the frame.
         this.pack();
         this.setVisible(true);
+        setLocationRelativeTo(null);
     }
 
     /**

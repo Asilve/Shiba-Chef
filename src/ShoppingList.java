@@ -13,5 +13,6 @@ public class ShoppingList extends ShibaWindow{
 
         this.pack();
         this.setVisible(true);
+        setLocationRelativeTo(null);
     }
 }
