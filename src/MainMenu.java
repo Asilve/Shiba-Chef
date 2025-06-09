@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
  * Main Menu Window.
  *
  * @author Anthony Silvester
- * @version v1.0
+ * @version v1.1
  */
 public class MainMenu extends ShibaWindow{
 
@@ -27,14 +27,14 @@ public class MainMenu extends ShibaWindow{
         // Goes to meal generation pages.
         mealsButton.addActionListener(e -> {
             if(e.getSource()==mealsButton){
-                MainMenu.super.dispose();
+                super.dispose();
                 new Days();
             }
         });
 
         // Goes to new meal adder page.
         newMealButton.addActionListener(e -> {
-            MainMenu.super.dispose();
+            super.dispose();
             new NewMeal();
         });
 
@@ -62,7 +62,7 @@ public class MainMenu extends ShibaWindow{
     private void buttonSetup(JButton button, int yCoord){
         button.setBounds(67, yCoord, 185, 60);
         button.setHorizontalTextPosition(SwingConstants.CENTER);
-        button.setVerticalAlignment(SwingConstants.CENTER);
+        button.setVerticalTextPosition(SwingConstants.CENTER);
         button.setFont(new Font("SansSerif", Font.BOLD, 16));
         button.setContentAreaFilled(false);
         button.setBorderPainted(false);
