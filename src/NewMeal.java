@@ -9,7 +9,7 @@ import javax.swing.*;
 public class NewMeal extends ShibaWindow{
 
     NewMeal(){
-        super(new ImageIcon("assets/Art/Background-NewMeal.png").getImage(), new ImageIcon("assets/Art/Hat-Icon.png").getImage());
+        super(new ImageIcon("assets/Art/Background-NewMeal.png").getImage());
 
         this.pack();
         this.setVisible(true);

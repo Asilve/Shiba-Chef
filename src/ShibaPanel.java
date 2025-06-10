@@ -5,10 +5,10 @@ import java.awt.*;
  * Class that creates a background frame for each window.
  *
  * @author Anthony Silvester
- * @version v1.0
+ * @version v1.1
  */
 public class ShibaPanel extends JPanel {
-    private final Image backgroundImage;
+    private Image backgroundImage;
 
     /**
      * Constructor
@@ -31,4 +31,12 @@ public class ShibaPanel extends JPanel {
         g.drawImage(backgroundImage, 0, 0, 720, 480, this);
     }
 
+    /**
+     * Protected method that changes the background image of the panel.
+     *
+     * @param newBackground new background to be displayed
+     */
+    protected void changeBackground(Image newBackground){
+        this.backgroundImage = newBackground;
+    }
 }

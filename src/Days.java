@@ -16,7 +16,7 @@ public class Days extends ShibaWindow{
      */
     Days(){
         // Setup new frame, obtain images for buttons
-        super(new ImageIcon("assets/Art/Background-Days.png").getImage(), new ImageIcon("assets/Art/Hat-Icon.png").getImage());
+        super(new ImageIcon("assets/Art/Background-Days.png").getImage());
         Image buttonImage = new ImageIcon("assets/Art/Button5.png").getImage().getScaledInstance(125, 45, Image.SCALE_SMOOTH);
         Image homeImage = new ImageIcon("assets/Art/Home.png").getImage().getScaledInstance(45, 40, Image.SCALE_SMOOTH);
 

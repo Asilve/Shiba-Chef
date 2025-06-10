@@ -5,7 +5,7 @@ import java.util.*;
  * ShibaChef is a personal meal planner and shopping list generator.
  * 
  * @author Anthony Silvester
- * @version 0.3.1
+ * @version 0.3.2
  */
 public class ShibaChef {
     // Variables used in ShibaChef.
@@ -239,6 +239,6 @@ public class ShibaChef {
     }
 
     public static void main(String[] args){
-        new MainMenu();
+        new GeneratedMeals();
     }
 }

@@ -1,7 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 /**
  * Main Menu Window.
@@ -16,7 +14,7 @@ public class MainMenu extends ShibaWindow{
      */
     MainMenu(){
         // Generates a new frame and creates image variable for the button.
-        super(new ImageIcon("assets/Art/Background-Main.png").getImage(), new ImageIcon("assets/Art/Hat-Icon.png").getImage());
+        super(new ImageIcon("assets/Art/Background-Main.png").getImage());
         Image buttonImage = new ImageIcon("assets/Art/Button1.png").getImage().getScaledInstance(185, 60, Image.SCALE_SMOOTH);
 
         // Button Setup.
@@ -42,9 +40,7 @@ public class MainMenu extends ShibaWindow{
         });
 
         // Quits the program.
-        quitButton.addActionListener(e -> {
-            System.exit(0);
-        });
+        quitButton.addActionListener(e -> System.exit(0));
 
         // Adding the buttons to the Panel.
         this.add(mealsButton);
