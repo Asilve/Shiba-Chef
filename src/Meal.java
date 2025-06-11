@@ -2,7 +2,7 @@
  * Meal class is used to record and obtain meal data used in ShibaChef.
  *
  * @author Anthony Silvester
- * @version v1.0
+ * @version v1.1
  */
 
 public class Meal {
@@ -328,6 +328,13 @@ public class Meal {
         }
     }
 
-
+    /**
+     * Outputs the name of the meal.
+     *
+     * @return the name of the meal.
+     */
+    public String getMeal_name(){
+        return this.meal_name;
+    }
 
 }

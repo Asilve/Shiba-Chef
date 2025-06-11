@@ -1,15 +1,19 @@
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Window for obtaining how many days to batch cook.
  *
  * @author Anthony Silvester
- * @version v1.0
+ * @version v1.2
  */
 public class Days extends ShibaWindow{
     // Create text field for user input
     private final JTextField textField;
+    private int[] numOfDays;
+    private ArrayList<Meal> selectedMeals;
 
     /**
      * Constructor
@@ -65,8 +69,10 @@ public class Days extends ShibaWindow{
         try{
             int days = Integer.parseInt(temp);
             if(days > 1 && days < 8){
+                numOfDays = ShibaChef.getNumberOfDays(days);
                 super.dispose();
-                new GeneratedMeals();
+                new GeneratedMeals(ShibaChef.generateRandomMeals(numOfDays));
+
             }
             else {
                 JOptionPane.showMessageDialog(null, "Please enter a number between 2 and 7!", "Error", JOptionPane.ERROR_MESSAGE);

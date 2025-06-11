@@ -7,7 +7,7 @@ import java.util.*;
  * ShibaChef is a personal meal planner and shopping list generator.
  * 
  * @author Anthony Silvester
- * @version 0.3.3
+ * @version 0.3.4
  */
 public class ShibaChef {
     // Variables used in ShibaChef.
@@ -16,7 +16,6 @@ public class ShibaChef {
     static ArrayList<String> mealNames = new ArrayList<>();
     static ArrayList<String> mealProfiles = new ArrayList<>();
     static ArrayList<Meal> meals = new ArrayList<>();
-    static ArrayList<Meal> selectedMeals = new ArrayList<>();
 
     /**
      * Combines two {@link ArrayList}s of {@link String}s by alternating their elements line by line.
@@ -30,7 +29,7 @@ public class ShibaChef {
      * @return a combined string with alternating elements from {@code mealNames} and {@code mealProfiles},
      *         each separated by newlines
      */
-    private static String combineStringArrays(){
+    public static String combineStringArrays(){
         String output = "";
         for(int i = 0; i < numberOfMeals; i++){
             output += mealNames.get(i) + "\n" + mealProfiles.get(i) + "\n";
@@ -47,7 +46,7 @@ public class ShibaChef {
      *
      * @param fileContent the content to write to the file
      */
-    private static void writeToFile(String fileContent){
+    public static void writeToFile(String fileContent){
         try (FileWriter writer = new FileWriter(file)){
             writer.write(fileContent);
         }
@@ -72,7 +71,7 @@ public class ShibaChef {
      * If an I/O error occurs during reading, an error message is printed to the console.
      *
      */
-    private static void readFile(){
+    public static void readFile(){
         mealNames.clear();
         mealProfiles.clear();
         numberOfMeals = 0;
@@ -119,7 +118,7 @@ public class ShibaChef {
      *                    Example: {@code "3 0 1300 1400 0000 0000 11010 010001000"}
      * @throws IllegalArgumentException if the meal profile format is incorrect.
      */
-    private static void addNewMeal(String mealName, String mealProfile){
+    public static void addNewMeal(String mealName, String mealProfile){
         String regex = "^\\d [01] [01]\\d{3} [01]\\d{3} [01]\\d{3} [01]\\d{3} [01]{5} [01]{9}$";
         if(mealProfile.matches(regex)){
             mealNames.add(mealName);
@@ -144,7 +143,8 @@ public class ShibaChef {
      *
      * @throws IllegalArgumentException if any meal profile does not match the expected format.
      */
-    private static void generateMeals(){
+    public static void generateMeals(){
+        meals.clear();
         String regex = "^\\d [01] [01]\\d{3} [01]\\d{3} [01]\\d{3} [01]\\d{3} [01]{5} [01]{9}$";
         for (int i = 0; i < numberOfMeals; i++){
             if(mealProfiles.get(i).matches(regex)){
@@ -170,7 +170,7 @@ public class ShibaChef {
      * @return an array of integers representing how the days are split
      * @throws NoSuchElementException if the provided number of days is not supported
      */
-    private static int[] getNumberOfDays(int numberOfDays){
+    public static int[] getNumberOfDays(int numberOfDays){
         int[] daySplit;
 
         switch (numberOfDays){
@@ -218,7 +218,8 @@ public class ShibaChef {
      *
      * @param mealSplit an array of integers representing how many days each selected meal should cover
      */
-    private static void generateRandomMeals(int[] mealSplit){
+    public static ArrayList<Meal> generateRandomMeals(int[] mealSplit){
+        ArrayList<Meal> selectedMeals = new ArrayList<>();
         for(int mealNum : mealSplit){
             int index = 0;
             boolean foundMeal = false;
@@ -233,11 +234,12 @@ public class ShibaChef {
                 else{
                     index++;
                 }
-            if(!foundMeal){
-                System.out.println("Could not find valid meal to batch cook for " + mealNum + " Days.");
             }
+            if(!foundMeal){
+                JOptionPane.showMessageDialog(null, "Could not find valid meal to batch cook for " + mealNum + " Days.", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
+        return selectedMeals;
     }
 
     /**
@@ -260,7 +262,22 @@ public class ShibaChef {
         button.setFocusPainted(false);
     }
 
+    /**
+     * Sets up a JPanel for GUI
+     *
+     * @param panel panel we are setting up
+     * @param xCoord x coordinate of the panel
+     * @param yCoord y coordinate of the panel
+     * @param width width of the panel
+     * @param height height of the panel
+     */
+    public static void panelSetup(JPanel panel, int xCoord, int yCoord, int width, int height){
+        panel.setBounds(xCoord, yCoord, width, height);
+        panel.setOpaque(false);
+    }
+
     public static void main(String[] args){
-        new GeneratedMeals();
+        readFile();
+        new MainMenu();
     }
 }
