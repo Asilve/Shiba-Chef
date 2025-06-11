@@ -1,3 +1,5 @@
+import javax.swing.*;
+import java.awt.*;
 import java.io.*;
 import java.util.*;
 
@@ -5,7 +7,7 @@ import java.util.*;
  * ShibaChef is a personal meal planner and shopping list generator.
  * 
  * @author Anthony Silvester
- * @version 0.3.2
+ * @version 0.3.3
  */
 public class ShibaChef {
     // Variables used in ShibaChef.
@@ -236,6 +238,26 @@ public class ShibaChef {
             }
             }
         }
+    }
+
+    /**
+     * Sets up the button configurations for GUI.
+     *
+     * @param button The button we are setting up.
+     * @param xCoord The x coordinate that the button will be placed.
+     * @param yCoord The y coordinate that the button will be placed.
+     * @param width The width of the button.
+     * @param height The height of the button.
+     */
+    public static void buttonSetup(JButton button, int xCoord, int yCoord, int width, int height){
+        button.setBounds(xCoord, yCoord, width, height);
+        button.setHorizontalTextPosition(SwingConstants.CENTER);
+        button.setVerticalTextPosition(SwingConstants.CENTER);
+        button.setFont(new Font("SansSerif", Font.BOLD, 16));
+        button.setForeground(new Color(216, 195, 167));
+        button.setContentAreaFilled(false);
+        button.setBorderPainted(false);
+        button.setFocusPainted(false);
     }
 
     public static void main(String[] args){

@@ -28,14 +28,14 @@ public class GeneratedMeals extends ShibaWindow{
 
         // Menu button Configuration.
         JButton homeButton = new JButton("Home", new ImageIcon(menuButton));
-        buttonSetup(homeButton, 580, 80, 92, 30);
+        ShibaChef.buttonSetup(homeButton, 580, 80, 92, 30);
         JButton backButton = new JButton("Back", new ImageIcon(menuButton));
-        buttonSetup(backButton, 580, 130, 92, 30);
+        ShibaChef.buttonSetup(backButton, 580, 130, 92, 30);
         shoppingButton = new JButton("Shopping", new ImageIcon(menuButton));
-        buttonSetup(shoppingButton, 580, 180, 92, 30);
+        ShibaChef.buttonSetup(shoppingButton, 580, 180, 92, 30);
         shoppingButton.setFont(new Font("SansSerif", Font.BOLD, 12));
         mealsButton = new JButton("Meals", new ImageIcon(menuButton));
-        buttonSetup(mealsButton, 580, 180, 92, 30);
+        ShibaChef.buttonSetup(mealsButton, 580, 180, 92, 30);
 
         //Action listeners for menu buttons.
         homeButton.addActionListener(e -> {super.dispose(); new MainMenu();});
@@ -54,26 +54,6 @@ public class GeneratedMeals extends ShibaWindow{
         this.pack();
         this.setVisible(true);
         setLocationRelativeTo(null);
-    }
-
-    /**
-     * Sets up the button configurations for the Generated Menu page.
-     *
-     * @param button The button we are setting up.
-     * @param xCoord The x coordinate that the button will be placed.
-     * @param yCoord The y coordinate that the button will be placed.
-     * @param width The width of the button.
-     * @param height The height of the button.
-     */
-    private void buttonSetup(JButton button, int xCoord, int yCoord, int width, int height){
-        button.setBounds(xCoord, yCoord, width, height);
-        button.setHorizontalTextPosition(SwingConstants.CENTER);
-        button.setVerticalTextPosition(SwingConstants.CENTER);
-        button.setFont(new Font("SansSerif", Font.BOLD, 16));
-        button.setForeground(new Color(216, 195, 167));
-        button.setContentAreaFilled(false);
-        button.setBorderPainted(false);
-        button.setFocusPainted(false);
     }
 
     /**

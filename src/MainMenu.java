@@ -19,11 +19,11 @@ public class MainMenu extends ShibaWindow{
 
         // Button Setup.
         JButton mealsButton = new JButton("Generate Meals", new ImageIcon(buttonImage));
-        buttonSetup(mealsButton, 130);
+        ShibaChef.buttonSetup(mealsButton, 67,130, 185, 60);
         JButton newMealButton = new JButton("New Meal", new ImageIcon(buttonImage));
-        buttonSetup(newMealButton, 210);
+        ShibaChef.buttonSetup(newMealButton, 67,210,185, 60);
         JButton quitButton = new JButton("Quit", new ImageIcon(buttonImage));
-        buttonSetup(quitButton, 290);
+        ShibaChef.buttonSetup(quitButton, 67,290,185, 60);
 
         // Goes to meal generation pages.
         mealsButton.addActionListener(e -> {
@@ -51,21 +51,5 @@ public class MainMenu extends ShibaWindow{
         this.pack();
         this.setVisible(true);
         setLocationRelativeTo(null);
-    }
-
-    /**
-     * Sets up the button configurations for the Main Menu.
-     *
-     * @param button The button we are setting up.
-     * @param yCoord The y coordinate that the button will be placed.
-     */
-    private void buttonSetup(JButton button, int yCoord){
-        button.setBounds(67, yCoord, 185, 60);
-        button.setHorizontalTextPosition(SwingConstants.CENTER);
-        button.setVerticalTextPosition(SwingConstants.CENTER);
-        button.setFont(new Font("SansSerif", Font.BOLD, 16));
-        button.setContentAreaFilled(false);
-        button.setBorderPainted(false);
-        button.setFocusPainted(false);
     }
 }

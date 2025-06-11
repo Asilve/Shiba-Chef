@@ -22,20 +22,11 @@ public class Days extends ShibaWindow{
 
         // setup for the submit button.
         JButton submitButton = new JButton("Submit", new ImageIcon(buttonImage));
-        submitButton.setBounds(284, 265, 125, 45);
-        submitButton.setHorizontalTextPosition(SwingConstants.CENTER);
-        submitButton.setVerticalTextPosition(SwingConstants.CENTER);
-        submitButton.setFont(new Font("SansSerif", Font.BOLD, 14));
-        submitButton.setContentAreaFilled(false);
-        submitButton.setBorderPainted(false);
-        submitButton.setFocusPainted(false);
+        ShibaChef.buttonSetup(submitButton,284,265,125,45);
 
         // setup for the home button.
         JButton homeButton = new JButton(new ImageIcon(homeImage));
-        homeButton.setBounds(20, 20, 45, 40);
-        homeButton.setContentAreaFilled(false);
-        homeButton.setBorderPainted(false);
-        homeButton.setFocusPainted(false);
+        ShibaChef.buttonSetup(homeButton,20,20,45,40);
 
         // setup for the text field.
         textField = new JTextField();
