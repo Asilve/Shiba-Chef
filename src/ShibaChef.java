@@ -7,7 +7,7 @@ import java.util.*;
  * ShibaChef is a personal meal planner and shopping list generator.
  * 
  * @author Anthony Silvester
- * @version 0.3.4
+ * @version 0.3.5
  */
 public class ShibaChef {
     // Variables used in ShibaChef.
@@ -274,6 +274,81 @@ public class ShibaChef {
     public static void panelSetup(JPanel panel, int xCoord, int yCoord, int width, int height){
         panel.setBounds(xCoord, yCoord, width, height);
         panel.setOpaque(false);
+    }
+
+    /**
+     * Sets up a text JLabels to be added to panels.
+     *
+     * @param label the JLabel to be configured
+     * @param xCoord the x Coordinates of the label
+     * @param yCoord the y Coordinates of the label
+     * @param width the Width of the label
+     * @param height the height of the label
+     * @param size the size of the font
+     * @return the configured label back (for anonymous object calling).
+     */
+    public static JLabel setTextLabel(JLabel label, int xCoord, int yCoord, int width, int height, int size){
+        label.setBounds(xCoord,yCoord,width,height);
+        label.setFont(new Font("SansSerif", Font.BOLD, size));
+        label.setForeground(new Color(50,35,20));
+        label.setOpaque(false);
+        return label;
+    }
+
+    /**
+     * Sets up a text field to be added to panels.
+     *
+     * @param textField the field to be configured
+     * @param xCoord the x Coordinates of the field
+     * @param yCoord the y Coordinates of the field
+     * @param width the Width of the field
+     * @param height the height of the field
+     * @param size the size of the field
+     * @return the configured text field back (for anonymous object calling).
+     */
+    public static JTextField textFieldSetup(JTextField textField, int xCoord, int yCoord, int width, int height, int size){
+        textField.setBounds(xCoord, yCoord, width, height);
+        textField.setFont(new Font("SansSerif", Font.BOLD, size));
+        textField.setForeground(new Color(50,35,20));
+        return textField;
+    }
+
+    /**
+     * Sets up a radio button to be added to panels.
+     *
+     * @param button the JRadioButton to be configured
+     * @param xCoord the x Coordinates of the button
+     * @param yCoord the y Coordinates of the button
+     * @param width the Width of the button
+     * @param height the height of the button
+     * @param size the size of the font
+     * @return the configured button back (for anonymous object calling).
+     */
+    public static JRadioButton radioButtonSetup(JRadioButton button, int xCoord, int yCoord, int width, int height, int size){
+        button.setBounds(xCoord,yCoord,width,height);
+        button.setOpaque(false);
+        button.setFont(new Font("SansSerif", Font.BOLD, size));
+        button.setForeground(new Color(50,35,20));
+        return button;
+    }
+
+    /**
+     * Sets up a checkbox to be added to panels.
+     *
+     * @param button the JCheckBox to be configured
+     * @param xCoord the x Coordinates of the box
+     * @param yCoord the y Coordinates of the box
+     * @param width the Width of the box
+     * @param height the height of the box
+     * @param size the size of the font
+     * @return the configured box back (for anonymous object calling).
+     */
+    public static JCheckBox checkBoxSetup(JCheckBox button, int xCoord, int yCoord, int width, int height, int size) {
+        button.setBounds(xCoord, yCoord, width, height);
+        button.setOpaque(false);
+        button.setFont(new Font("SansSerif", Font.BOLD, size));
+        button.setForeground(new Color(50, 35, 20));
+        return button;
     }
 
     public static void main(String[] args){

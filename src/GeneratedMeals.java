@@ -128,25 +128,6 @@ public class GeneratedMeals extends ShibaWindow{
     }
 
     /**
-     * Sets up a text JLabels to be added to panels.
-     *
-     * @param label the JLabel to be configured
-     * @param xCoord the x Coordinates of the label
-     * @param yCoord the y Coordinates of the label
-     * @param width the Width of the label
-     * @param height the height of the label
-     * @param size the size of the font
-     * @return the configured label back (for anonymous object calling).
-     */
-    private JLabel setTextLabel(JLabel label, int xCoord, int yCoord, int width, int height, int size){
-        label.setBounds(xCoord,yCoord,width,height);
-        label.setFont(new Font("SansSerif", Font.BOLD, size));
-        label.setForeground(new Color(50,35,20));
-        label.setOpaque(false);
-        return label;
-    }
-
-    /**
      * Sets up the meal panels and shopping panels with their relevant information.
      * Hides all panels upon completing their setup
      */
@@ -159,15 +140,15 @@ public class GeneratedMeals extends ShibaWindow{
 
             // Set up Titles.
             JLabel mealName = new JLabel(meal.getMeal_name());
-            panel.add(setTextLabel(mealName, 0, 0, 400, 60,22));
+            panel.add(ShibaChef.setTextLabel(mealName, 0, 0, 400, 60,22));
             JLabel meatText = new JLabel("Meat:");
-            panel.add(setTextLabel(meatText, 5, 50, 220, 60, 18));
+            panel.add(ShibaChef.setTextLabel(meatText, 5, 50, 220, 60, 18));
             JLabel carbText = new JLabel("Carb:");
-            panel.add(setTextLabel(carbText, 5, 100, 220, 60, 18));
+            panel.add(ShibaChef.setTextLabel(carbText, 5, 100, 220, 60, 18));
             JLabel vegText = new JLabel("Vegetables:");
-            panel.add(setTextLabel(vegText, 5, 150, 220, 60, 18));
+            panel.add(ShibaChef.setTextLabel(vegText, 5, 150, 220, 60, 18));
             JLabel miscText = new JLabel("Misc:");
-            panel.add(setTextLabel(miscText, 230, 50, 220, 60, 18));
+            panel.add(ShibaChef.setTextLabel(miscText, 230, 50, 220, 60, 18));
 
             // Set meat value.
             JLabel meatValue;
@@ -177,7 +158,7 @@ public class GeneratedMeals extends ShibaWindow{
             else {
                 meatValue = new JLabel(meal.getMeatGrams() + " Grams of Meat");
             }
-            panel.add(setTextLabel(meatValue,5,80,220,30, 12));
+            panel.add(ShibaChef.setTextLabel(meatValue,5,80,220,30, 12));
 
             // set carb value.
             JLabel carbValue;
@@ -190,66 +171,66 @@ public class GeneratedMeals extends ShibaWindow{
             else {
                 carbValue = new JLabel(meal.getNoodlesGrams() + " Grams of Noodles");
             }
-            panel.add(setTextLabel(carbValue, 5, 130,220,30,12));
+            panel.add(ShibaChef.setTextLabel(carbValue, 5, 130,220,30,12));
 
             // Set up Vegetable values.
             int vegNum = 0;
             if(meal.getOnion() == 1){
-                panel.add(setTextLabel(new JLabel("Onion"),5,180,220,30,12));
+                panel.add(ShibaChef.setTextLabel(new JLabel("Onion"),5,180,220,30,12));
                 vegNum++;
             }
             if (meal.getBellPepper() == 1){
-                panel.add(setTextLabel(new JLabel("Bell Pepper"),5,180+(14*vegNum),220,30,12));
+                panel.add(ShibaChef.setTextLabel(new JLabel("Bell Pepper"),5,180+(14*vegNum),220,30,12));
                 vegNum++;
             }
             if(meal.getGarlic() == 1){
-                panel.add(setTextLabel(new JLabel("Garlic"),5,180+(14*vegNum),220,30,12));
+                panel.add(ShibaChef.setTextLabel(new JLabel("Garlic"),5,180+(14*vegNum),220,30,12));
                 vegNum++;
             }
             if(meal.getChoppedTomatoes() == 1){
-                panel.add(setTextLabel(new JLabel("Chopped Tomatoes"),5,180+(14*vegNum),220,30,12));
+                panel.add(ShibaChef.setTextLabel(new JLabel("Chopped Tomatoes"),5,180+(14*vegNum),220,30,12));
                 vegNum++;
             }
             if(meal.getCherryTomatoes() == 1){
-                panel.add(setTextLabel(new JLabel("Cherry Tomatoes"),5,180+(14*vegNum),220,30,12));
+                panel.add(ShibaChef.setTextLabel(new JLabel("Cherry Tomatoes"),5,180+(14*vegNum),220,30,12));
             }
 
             // Set up misc values.
             int miscNum = 0;
             if(meal.getEggs() == 1){
-                panel.add(setTextLabel(new JLabel("Eggs"),230,80,220,30,12));
+                panel.add(ShibaChef.setTextLabel(new JLabel("Eggs"),230,80,220,30,12));
                 miscNum++;
             }
             if(meal.getCheese() == 1){
-                panel.add(setTextLabel(new JLabel("Cheese"),230,80+(14*miscNum),220,30,12));
+                panel.add(ShibaChef.setTextLabel(new JLabel("Cheese"),230,80+(14*miscNum),220,30,12));
                 miscNum++;
             }
             if(meal.getMayo() == 1){
-                panel.add(setTextLabel(new JLabel("Mayo"),230,80+(14*miscNum),220,30,12));
+                panel.add(ShibaChef.setTextLabel(new JLabel("Mayo"),230,80+(14*miscNum),220,30,12));
                 miscNum++;
             }
             if(meal.getSourCream() == 1){
-                panel.add(setTextLabel(new JLabel("Sour Cream"),230,80+(14*miscNum),220,30,12));
+                panel.add(ShibaChef.setTextLabel(new JLabel("Sour Cream"),230,80+(14*miscNum),220,30,12));
                 miscNum++;
             }
             if(meal.getDoubleCream() == 1){
-                panel.add(setTextLabel(new JLabel("Double Cream"),230,80+(14*miscNum),220,30,12));
+                panel.add(ShibaChef.setTextLabel(new JLabel("Double Cream"),230,80+(14*miscNum),220,30,12));
                 miscNum++;
             }
             if(meal.getPastaSauce() == 1){
-                panel.add(setTextLabel(new JLabel("Pasta Sauce"),230,80+(14*miscNum),220,30,12));
+                panel.add(ShibaChef.setTextLabel(new JLabel("Pasta Sauce"),230,80+(14*miscNum),220,30,12));
                 miscNum++;
             }
             if(meal.getCurrySauce() == 1){
-                panel.add(setTextLabel(new JLabel("Curry Sauce"),230,80+(14*miscNum),220,30,12));
+                panel.add(ShibaChef.setTextLabel(new JLabel("Curry Sauce"),230,80+(14*miscNum),220,30,12));
                 miscNum++;
             }
             if(meal.getSoySauce() == 1){
-                panel.add(setTextLabel(new JLabel("Soy Sauce"),230,80+(14*miscNum),220,30,12));
+                panel.add(ShibaChef.setTextLabel(new JLabel("Soy Sauce"),230,80+(14*miscNum),220,30,12));
                 miscNum++;
             }
             if(meal.getCoconutMilk() == 1){
-                panel.add(setTextLabel(new JLabel("Coconut Milk"),230,80+(14*miscNum),220,30,12));
+                panel.add(ShibaChef.setTextLabel(new JLabel("Coconut Milk"),230,80+(14*miscNum),220,30,12));
             }
             panel.setVisible(false);
 
@@ -303,34 +284,34 @@ public class GeneratedMeals extends ShibaWindow{
 
         // Set up the Shopping List
         JLabel shoppingTitle = new JLabel("Shopping List");
-        setTextLabel(shoppingTitle,0, 0, 220, 60,18);
+        ShibaChef.setTextLabel(shoppingTitle,0, 0, 220, 60,18);
         sPanel.add(shoppingTitle);
         int numItems = 0;
         int xExpansion = 0;
-        if(tuna){sPanel.add(setTextLabel(new JLabel("Canned Fish"), 5,50,100,20,12)); numItems++;}
-        if(meat > 0){sPanel.add(setTextLabel(new JLabel(meat + " Grams of Meat"), 5,50+(numItems*14),200,20,12)); numItems++;}
-        if(pasta>0){sPanel.add(setTextLabel(new JLabel(pasta + " Grams of Pasta"), 5,50+(numItems*14),200,20,12)); numItems++;}
-        if(rice>0){sPanel.add(setTextLabel(new JLabel(rice + " Grams of Rice"), 5,50+(numItems*14),200,20,12)); numItems++;}
-        if(noodles>0){sPanel.add(setTextLabel(new JLabel(noodles + " Grams of Noodles"), 5,50+(numItems*14),200,20,12)); numItems++;}
-        if(onion>0){sPanel.add(setTextLabel(new JLabel(onion + " Onion(s)"), 5,50+(numItems*14),200,20,12)); numItems++;}
-        if(bell>0){sPanel.add(setTextLabel(new JLabel(bell + " Bell Pepper(s)"), 5,50+(numItems*14),200,20,12)); numItems++;}
-        if(garlic){sPanel.add(setTextLabel(new JLabel("Garlic"), 5,50+(numItems*14),200,20,12)); numItems++;}
-        if(chopTom>0){sPanel.add(setTextLabel(new JLabel(chopTom + " Can(s) of Chopped Tomatoes"), 5,50+(numItems*14),200,20,12)); numItems++;}
-        if(cherryTom){sPanel.add(setTextLabel(new JLabel("Cherry Tomatoes"), 5,50+(numItems*14),200,20,12)); numItems++;}
-        if(egg){sPanel.add(setTextLabel(new JLabel("Eggs"), 5,50+(numItems*14),200,20,12)); numItems++;}
-        if(cheese){sPanel.add(setTextLabel(new JLabel("Cheese"), 5,50+(numItems*14),200,20,12)); numItems++;}
-        if(mayo){sPanel.add(setTextLabel(new JLabel("Mayo"), 5,50+(numItems*14),200,20,12)); numItems++;}
-        if(sCream){sPanel.add(setTextLabel(new JLabel("Sour Cream"), 5,50+(numItems*14),200,20,12)); numItems++;}
+        if(tuna){sPanel.add(ShibaChef.setTextLabel(new JLabel("Canned Fish"), 5,50,100,20,12)); numItems++;}
+        if(meat > 0){sPanel.add(ShibaChef.setTextLabel(new JLabel(meat + " Grams of Meat"), 5,50+(numItems*14),200,20,12)); numItems++;}
+        if(pasta>0){sPanel.add(ShibaChef.setTextLabel(new JLabel(pasta + " Grams of Pasta"), 5,50+(numItems*14),200,20,12)); numItems++;}
+        if(rice>0){sPanel.add(ShibaChef.setTextLabel(new JLabel(rice + " Grams of Rice"), 5,50+(numItems*14),200,20,12)); numItems++;}
+        if(noodles>0){sPanel.add(ShibaChef.setTextLabel(new JLabel(noodles + " Grams of Noodles"), 5,50+(numItems*14),200,20,12)); numItems++;}
+        if(onion>0){sPanel.add(ShibaChef.setTextLabel(new JLabel(onion + " Onion(s)"), 5,50+(numItems*14),200,20,12)); numItems++;}
+        if(bell>0){sPanel.add(ShibaChef.setTextLabel(new JLabel(bell + " Bell Pepper(s)"), 5,50+(numItems*14),200,20,12)); numItems++;}
+        if(garlic){sPanel.add(ShibaChef.setTextLabel(new JLabel("Garlic"), 5,50+(numItems*14),200,20,12)); numItems++;}
+        if(chopTom>0){sPanel.add(ShibaChef.setTextLabel(new JLabel(chopTom + " Can(s) of Chopped Tomatoes"), 5,50+(numItems*14),200,20,12)); numItems++;}
+        if(cherryTom){sPanel.add(ShibaChef.setTextLabel(new JLabel("Cherry Tomatoes"), 5,50+(numItems*14),200,20,12)); numItems++;}
+        if(egg){sPanel.add(ShibaChef.setTextLabel(new JLabel("Eggs"), 5,50+(numItems*14),200,20,12)); numItems++;}
+        if(cheese){sPanel.add(ShibaChef.setTextLabel(new JLabel("Cheese"), 5,50+(numItems*14),200,20,12)); numItems++;}
+        if(mayo){sPanel.add(ShibaChef.setTextLabel(new JLabel("Mayo"), 5,50+(numItems*14),200,20,12)); numItems++;}
+        if(sCream){sPanel.add(ShibaChef.setTextLabel(new JLabel("Sour Cream"), 5,50+(numItems*14),200,20,12)); numItems++;}
         if (numItems >=14 ){numItems = 0; xExpansion++;}
-        if(dCream){sPanel.add(setTextLabel(new JLabel("Double Cream"), 5 + (xExpansion*230),50+(numItems*14),200,20,12)); numItems++;}
+        if(dCream){sPanel.add(ShibaChef.setTextLabel(new JLabel("Double Cream"), 5 + (xExpansion*230),50+(numItems*14),200,20,12)); numItems++;}
         if (numItems >=14 ){numItems = 0; xExpansion++;}
-        if(pastaSauce>0){sPanel.add(setTextLabel(new JLabel(pastaSauce + " Jar(s) of Pasta Sauce"), 5 + (xExpansion*230),50+(numItems*14),200,20,12)); numItems++;}
+        if(pastaSauce>0){sPanel.add(ShibaChef.setTextLabel(new JLabel(pastaSauce + " Jar(s) of Pasta Sauce"), 5 + (xExpansion*230),50+(numItems*14),200,20,12)); numItems++;}
         if (numItems >=14 ){numItems = 0; xExpansion++;}
-        if (currySauce>0){sPanel.add(setTextLabel(new JLabel(currySauce + " Jar(s) of Curry Sauce"), 5 + (xExpansion*230),50+(numItems*14),200,20,12)); numItems++;}
+        if (currySauce>0){sPanel.add(ShibaChef.setTextLabel(new JLabel(currySauce + " Jar(s) of Curry Sauce"), 5 + (xExpansion*230),50+(numItems*14),200,20,12)); numItems++;}
         if (numItems >=14 ){numItems = 0; xExpansion++;}
-        if(soySauce){sPanel.add(setTextLabel(new JLabel("Soy Sauce"), 5 + (xExpansion*230),50+(numItems*14),200,20,12)); numItems++;}
+        if(soySauce){sPanel.add(ShibaChef.setTextLabel(new JLabel("Soy Sauce"), 5 + (xExpansion*230),50+(numItems*14),200,20,12)); numItems++;}
         if (numItems >=14 ){numItems = 0; xExpansion++;}
-        if(coconutMilk){sPanel.add(setTextLabel(new JLabel("Coconut Milk"), 5 + (xExpansion*230),50+(numItems*14),200,20,12)); numItems++;}
+        if(coconutMilk){sPanel.add(ShibaChef.setTextLabel(new JLabel("Coconut Milk"), 5 + (xExpansion*230),50+(numItems*14),200,20,12)); numItems++;}
 
         sPanel.setVisible(false);
     }
