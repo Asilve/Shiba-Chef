@@ -5,7 +5,7 @@ import java.awt.*;
  * Window that allows users to make their own meal.
  *
  * @author Anthony Silvester
- * @version v1.1
+ * @version v1.2
  */
 public class NewMeal extends ShibaWindow{
     // Variable setup
@@ -15,13 +15,13 @@ public class NewMeal extends ShibaWindow{
     private final ButtonGroup meatGroup = new ButtonGroup();
     private JRadioButton meatButton;
     private JRadioButton tunaButton;
-    private JTextField meatGrams = new JTextField();
-    private JLabel gramsLabel = new JLabel("Grams: ");
+    private final JTextField meatGrams = new JTextField();
+    private final JLabel gramsLabel = new JLabel("Grams: ");
     private final ButtonGroup carbGroup = new ButtonGroup();
     private JRadioButton pastaButton;
     private JRadioButton riceButton;
     private JRadioButton noodleButton;
-    private JTextField carbGrams = new JTextField();
+    private final JTextField carbGrams = new JTextField();
     private JCheckBox onionButton;
     private JCheckBox bellButton;
     private JCheckBox garlicButton;
@@ -48,15 +48,18 @@ public class NewMeal extends ShibaWindow{
         JButton submitButton = new JButton("Submit", new ImageIcon(menuButton));
         ShibaChef.buttonSetup(submitButton,580, 200, 92,30);
 
-        // JPanel Configuration
+        // JPanel Configuration.
         mealPanel = new JPanel(null);
         ShibaChef.panelSetup(mealPanel,45,45, 460, 290);
         pageSetup();
 
-        //Action listeners for menu buttons.
+        //Action listeners for buttons.
         homeButton.addActionListener(e -> {super.dispose(); new MainMenu();});
+        submitButton.addActionListener(e -> {submitButtonAction();});
+        tunaButton.addActionListener(e -> {gramsLabel.setVisible(false); meatGrams.setVisible(false);});
+        meatButton.addActionListener(e -> {gramsLabel.setVisible(true); meatGrams.setVisible(true);});
 
-        // Button and panel adding
+        // Button and panel adding.
         this.add(mealPanel);
         this.add(homeButton);
         this.add(submitButton);
@@ -68,6 +71,9 @@ public class NewMeal extends ShibaWindow{
         setLocationRelativeTo(null);
     }
 
+    /**
+     * Sets up the JRadiobuttons, JCheckBoxes and JTextFields so the user can input their new meal.
+     */
     private void pageSetup(){
         // Meal name setup
         mealPanel.add(ShibaChef.setTextLabel(new JLabel("Meal Name:"), 2, 0, 400, 60,22));
@@ -135,6 +141,119 @@ public class NewMeal extends ShibaWindow{
         mealPanel.add(soySauceButton);
         coconutButton = ShibaChef.checkBoxSetup(new JCheckBox("Coconut Milk"),300,250,120,14,12);
         mealPanel.add(coconutButton);
+    }
+
+    /**
+     * Adds padding to a string when creating a meal profile.
+     *
+     * @param input the string input that will be padded with zeros.
+     * @return the padded string.
+     */
+    private String setProfilePadding(String input){
+        int length = input.length();
+
+        return switch (length) {
+            case 1 -> "100" + input;
+            case 2 -> "10" + input;
+            case 3 -> "1" + input;
+            default -> "0000";
+        };
+    }
+
+    /**
+     * A method that implements the actions that should be taken when pressing the submit button.
+     */
+    private void submitButtonAction(){
+        String submittedMealName = mealName.getText().trim();
+        String submittedDays = numDays.getText().trim();
+        String mealProfile = "";
+
+        // Check meal name valid
+        if (submittedMealName.length() < 3){
+            JOptionPane.showMessageDialog(null, "Submit a valid meal name! (Greater than 3 characters.)", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Check number of days is valid.
+        try {
+            int days = Integer.parseInt(submittedDays);
+            if (days <= 1 || days >= 8) {
+                JOptionPane.showMessageDialog(null, "Please enter a number of days between 2 and 7!", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+        }
+        catch (NumberFormatException er){
+            JOptionPane.showMessageDialog(null, "Please enter a number of days for the meal.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        mealProfile += submittedDays;
+
+        // check meat input is valid
+        if (!meatButton.isSelected() && !tunaButton.isSelected()) {
+            JOptionPane.showMessageDialog(null, "Please enter a valid meat option!", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (meatButton.isSelected()){
+            try {
+                int inputMGrams = Integer.parseInt(meatGrams.getText().trim());
+                if (inputMGrams <=0 || inputMGrams >= 1000){
+                    JOptionPane.showMessageDialog(null, "Please enter a valid number of grams for the meat! (1 to 999 grams)", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+            }
+            catch (NumberFormatException er){
+                JOptionPane.showMessageDialog(null, "Please enter a number of grams for the meat!", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            mealProfile += " 0 " + setProfilePadding(meatGrams.getText().trim());
+        }
+        if (tunaButton.isSelected()) {mealProfile += " 1 0000";}
+
+        // check carb input is valid
+        if (!pastaButton.isSelected() && !riceButton.isSelected() && !noodleButton.isSelected()){
+            JOptionPane.showMessageDialog(null, "Please enter a valid input for the carbs!", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        try {
+            int inputCGrams = Integer.parseInt(carbGrams.getText().trim());
+            if (inputCGrams <=0 || inputCGrams >= 1000){
+                JOptionPane.showMessageDialog(null, "Please enter a valid number of grams for the meat! (1 to 999 grams)", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+        }
+        catch (NumberFormatException er){
+            JOptionPane.showMessageDialog(null, "Please enter a number of grams for the carbs!", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (pastaButton.isSelected()) {mealProfile += " " + setProfilePadding(carbGrams.getText().trim()) + " 0000 0000 ";}
+        if (riceButton.isSelected()) {mealProfile += " 0000 " + setProfilePadding(carbGrams.getText().trim()) + " 0000 ";}
+        if (noodleButton.isSelected()) {mealProfile += " 0000 0000 " + setProfilePadding(carbGrams.getText().trim()) + " ";}
+
+        // add Veg profile
+        mealProfile += (onionButton.isSelected() ? "1" : "0");
+        mealProfile += (bellButton.isSelected() ? "1" : "0");
+        mealProfile += (garlicButton.isSelected() ? "1" : "0");
+        mealProfile += (chopTomButton.isSelected() ? "1" : "0");
+        mealProfile += (cherryTomButton.isSelected() ? "1 " : "0 ");
+
+        // add misc profile
+        mealProfile += (eggButton.isSelected() ? "1" : "0");
+        mealProfile += (cheeseButton.isSelected() ? "1" : "0");
+        mealProfile += (mayoButton.isSelected() ? "1" : "0");
+        mealProfile += (sCreamButton.isSelected() ? "1" : "0");
+        mealProfile += (dCreamButton.isSelected() ? "1" : "0");
+        mealProfile += (pastaSauceButton.isSelected() ? "1" : "0");
+        mealProfile += (currySauceButton.isSelected() ? "1" : "0");
+        mealProfile += (soySauceButton.isSelected() ? "1" : "0");
+        mealProfile += (coconutButton.isSelected() ? "1" : "0");
+
+        int answer = JOptionPane.showConfirmDialog(null, "Is this meal Correct?", "Meal Confirmation", JOptionPane.YES_NO_OPTION);
+
+        if (answer == 0){
+            ShibaChef.addNewMeal(submittedMealName, mealProfile);
+            super.dispose();
+            new MainMenu();
+        }
     }
 
 }
