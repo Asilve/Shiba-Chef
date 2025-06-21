@@ -24,10 +24,10 @@ This project is being developed in **Java**, as I am currently learning it for u
 * ~~Implement File Manipulation for meal storage.~~
 * ~~Implement User input for number of days.~~
 * ~~Implement Random meal generator.~~
-* Implement Shopping list generator.
+* ~~Implement Shopping list generator.~~
 * ~~Source art / assets.~~
-* Develop GUI.
-* Implement sound effects.
+* ~~Develop GUI.~~
+* ~~Implement sound effects.~~
 * Create .exe
 
 #### Considerations for Expansion
@@ -52,6 +52,8 @@ Developer: Anthony Silvester / Asilve
 Currently, I am the sole developer of this project. Contributions are welcome and will be credited here.
 
 Some art assets made by ToffeeCraft: https://toffeecraft.itch.io/
+page turn sound by nsstudios -- https://freesound.org/s/321114/ 
+Button clicking sound by BiORNADE -- https://freesound.org/s/735803/
 
 ## License
 MIT License.

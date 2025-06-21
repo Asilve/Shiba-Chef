@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
 import java.util.ArrayList;
 
 /**
@@ -7,7 +8,7 @@ import java.util.ArrayList;
  * Allows user to also display the shopping list.
  *
  * @author Anthony Silvester
- * @version v1.2
+ * @version v1.3
  */
 public class GeneratedMeals extends ShibaWindow{
     // Variable setup.
@@ -20,6 +21,8 @@ public class GeneratedMeals extends ShibaWindow{
     private JPanel[] panelArray;
     private JButton[] deselectedButtons;
     private JButton[] selectedButtons;
+    private File buttonSound;
+    private File pageTurnSound;
 
     /**
      * Constructor
@@ -27,12 +30,14 @@ public class GeneratedMeals extends ShibaWindow{
      * @param selectedMeals Meals we have generated to be made.
      */
     GeneratedMeals(ArrayList<Meal> selectedMeals){
-        // Frame and image setup.
+        // Frame, image and sound setup.
         super(mealsBackground);
         meals = selectedMeals;
         Image menuButton = new ImageIcon("assets/Art/Button2.png").getImage().getScaledInstance(92, 30, Image.SCALE_SMOOTH);
         Image selectedButton = new ImageIcon("assets/Art/Button3.png").getImage().getScaledInstance(108, 34, Image.SCALE_SMOOTH);
         Image deselectedButton = new ImageIcon("assets/Art/Button4.png").getImage().getScaledInstance(108, 34, Image.SCALE_SMOOTH);
+        buttonSound = new File("assets/Sounds/clicking.wav");
+        pageTurnSound = new File("assets/Sounds/page_turn.wav");
 
         // Menu button Configuration.
         JButton homeButton = new JButton("Home", new ImageIcon(menuButton));
@@ -77,8 +82,8 @@ public class GeneratedMeals extends ShibaWindow{
 
 
         // Action listeners for menu buttons.
-        homeButton.addActionListener(e -> {super.dispose(); new MainMenu();});
-        backButton.addActionListener(e -> {super.dispose(); new Days();});
+        homeButton.addActionListener(e -> {ShibaChef.playSound(buttonSound);super.dispose(); new MainMenu();});
+        backButton.addActionListener(e -> {ShibaChef.playSound(buttonSound);super.dispose(); new Days();});
         shoppingButton.addActionListener(e -> changePage());
         mealsButton.addActionListener(e -> changePage());
 
@@ -149,6 +154,9 @@ public class GeneratedMeals extends ShibaWindow{
             panel.add(ShibaChef.setTextLabel(vegText, 5, 150, 220, 60, 18));
             JLabel miscText = new JLabel("Misc:");
             panel.add(ShibaChef.setTextLabel(miscText, 230, 50, 220, 60, 18));
+
+            // Set number of days
+            panel.add(ShibaChef.setTextLabel(new JLabel("Days: " + meal.getNumOfDays()), 2, 23,220,60,16));
 
             // Set meat value.
             JLabel meatValue;
@@ -316,12 +324,14 @@ public class GeneratedMeals extends ShibaWindow{
         sPanel.setVisible(false);
     }
 
+    /**
+     * Sets up the buttons for the page.
+     */
     private void buttonStartSetup(){
         selectedButtons[0].setVisible(true);
         for(int i = 1; i < meals.size(); i++){
             deselectedButtons[i].setVisible(true);
         }
-
     }
 
     /**
@@ -330,6 +340,7 @@ public class GeneratedMeals extends ShibaWindow{
      * @param value the value of the button that was pressed.
      */
     private void panelSwap(int value){
+        ShibaChef.playSound(pageTurnSound);
         panelArray[3].setVisible(false);
         for (int i = 0; i < meals.size(); i++){
             panelArray[i].setVisible(false);

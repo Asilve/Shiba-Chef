@@ -1,11 +1,12 @@
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
 
 /**
  * Window that allows users to make their own meal.
  *
  * @author Anthony Silvester
- * @version v1.2
+ * @version v1.3
  */
 public class NewMeal extends ShibaWindow{
     // Variable setup
@@ -38,9 +39,10 @@ public class NewMeal extends ShibaWindow{
     private JCheckBox coconutButton;
 
     NewMeal(){
-        // Frame and Image setup
+        // Frame, Image and sound setup
         super(new ImageIcon("assets/Art/Background-NewMeal.png").getImage());
         Image menuButton = new ImageIcon("assets/Art/Button2.png").getImage().getScaledInstance(92, 30, Image.SCALE_SMOOTH);
+        File buttonSound = new File("assets/Sounds/clicking.wav");
 
         // Menu button Configuration.
         JButton homeButton = new JButton("Home", new ImageIcon(menuButton));
@@ -54,8 +56,8 @@ public class NewMeal extends ShibaWindow{
         pageSetup();
 
         //Action listeners for buttons.
-        homeButton.addActionListener(e -> {super.dispose(); new MainMenu();});
-        submitButton.addActionListener(e -> {submitButtonAction();});
+        homeButton.addActionListener(e -> {ShibaChef.playSound(buttonSound);super.dispose(); new MainMenu();});
+        submitButton.addActionListener(e -> {ShibaChef.playSound(buttonSound);submitButtonAction();});
         tunaButton.addActionListener(e -> {gramsLabel.setVisible(false); meatGrams.setVisible(false);});
         meatButton.addActionListener(e -> {gramsLabel.setVisible(true); meatGrams.setVisible(true);});
 

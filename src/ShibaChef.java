@@ -1,3 +1,4 @@
+import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.*;
 import java.io.*;
@@ -7,7 +8,7 @@ import java.util.*;
  * ShibaChef is a personal meal planner and shopping list generator.
  * 
  * @author Anthony Silvester
- * @version 0.3.6
+ * @version 0.3.7
  */
 public class ShibaChef {
     // Variables used in ShibaChef.
@@ -349,6 +350,31 @@ public class ShibaChef {
         button.setFont(new Font("SansSerif", Font.BOLD, size));
         button.setForeground(new Color(50, 35, 20));
         return button;
+    }
+
+    /**
+     * Method that allows audio to be played.
+     *
+     * @param sound The sound file we want to play.
+     */
+    public static void playSound(File sound){
+        try(AudioInputStream buttonAudioStream = AudioSystem.getAudioInputStream(sound)){
+            Clip clip = AudioSystem.getClip();
+            clip.open(buttonAudioStream);
+            clip.start();
+        }
+        catch (FileNotFoundException e){
+            System.out.println("Could not locate file.");
+        }
+        catch (UnsupportedAudioFileException e){
+            System.out.println("Audio file not supported.");
+        }
+        catch (IOException e){
+            System.out.println("Something went wrong.");
+        }
+        catch (LineUnavailableException e) {
+            System.out.println("Unable to access audio resource.");
+        }
     }
 
     public static void main(String[] args){

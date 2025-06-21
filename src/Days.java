@@ -1,27 +1,30 @@
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
 import java.util.ArrayList;
 
 /**
  * Window for obtaining how many days to batch cook.
  *
  * @author Anthony Silvester
- * @version v1.2
+ * @version v1.3
  */
 public class Days extends ShibaWindow{
     // Create text field for user input
     private final JTextField textField;
     private int[] numOfDays;
     private ArrayList<Meal> selectedMeals;
+    private File buttonSound;
 
     /**
      * Constructor
      */
     Days(){
-        // Setup new frame, obtain images for buttons
+        // Setup new frame, obtain images for buttons and button audio
         super(new ImageIcon("assets/Art/Background-Days.png").getImage());
         Image buttonImage = new ImageIcon("assets/Art/Button5.png").getImage().getScaledInstance(125, 45, Image.SCALE_SMOOTH);
         Image homeImage = new ImageIcon("assets/Art/Home.png").getImage().getScaledInstance(45, 40, Image.SCALE_SMOOTH);
+        buttonSound = new File("assets/Sounds/clicking.wav");
 
         // setup for the submit button.
         JButton submitButton = new JButton("Submit", new ImageIcon(buttonImage));
@@ -45,6 +48,7 @@ public class Days extends ShibaWindow{
         submitButton.addActionListener(e -> submitDays());
         textField.addActionListener(e -> submitDays());
         homeButton.addActionListener(e -> {
+            ShibaChef.playSound(buttonSound);
             super.dispose();
             new MainMenu();
         });
@@ -64,6 +68,7 @@ public class Days extends ShibaWindow{
      * Checks whether the input given is valid. Gives error window if invalid. Moves to next page if valid.
      */
     private void submitDays(){
+        ShibaChef.playSound(buttonSound);
         String temp = textField.getText().trim();
         try{
             int days = Integer.parseInt(temp);

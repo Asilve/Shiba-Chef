@@ -1,11 +1,12 @@
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
 
 /**
  * Main Menu Window.
  *
  * @author Anthony Silvester
- * @version v1.1
+ * @version v1.2
  */
 public class MainMenu extends ShibaWindow{
 
@@ -13,9 +14,10 @@ public class MainMenu extends ShibaWindow{
      * Constructor
      */
     MainMenu(){
-        // Generates a new frame and creates image variable for the button.
+        // Generates a new frame and creates image / sound variables for the button.
         super(new ImageIcon("assets/Art/Background-Main.png").getImage());
         Image buttonImage = new ImageIcon("assets/Art/Button1.png").getImage().getScaledInstance(185, 60, Image.SCALE_SMOOTH);
+        File buttonSound = new File("assets/Sounds/clicking.wav");
 
         // Button Setup.
         JButton mealsButton = new JButton("Generate Meals", new ImageIcon(buttonImage));
@@ -28,6 +30,7 @@ public class MainMenu extends ShibaWindow{
         // Goes to meal generation pages.
         mealsButton.addActionListener(e -> {
             if(e.getSource()==mealsButton){
+                ShibaChef.playSound(buttonSound);
                 super.dispose();
                 new Days();
             }
@@ -35,6 +38,7 @@ public class MainMenu extends ShibaWindow{
 
         // Goes to new meal adder page.
         newMealButton.addActionListener(e -> {
+            ShibaChef.playSound(buttonSound);
             super.dispose();
             new NewMeal();
         });
