@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="ShibaChef:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/ShibaChef_jar</output-path>
+    <root id="archive" name="ShibaChef.jar">
+      <element id="module-output" name="ShibaChef" />
+    </root>
+  </artifact>
+</component>
