@@ -12,7 +12,7 @@ import java.util.*;
  */
 public class ShibaChef {
     // Variables used in ShibaChef.
-    static String file = "tests/test.txt";
+    static String file = "resources/MealProfiles.txt";
     static int numberOfMeals = 0;
     static ArrayList<String> mealNames = new ArrayList<>();
     static ArrayList<String> mealProfiles = new ArrayList<>();
@@ -80,7 +80,7 @@ public class ShibaChef {
         meals.clear();
         String line;
         try(BufferedReader reader = new BufferedReader(new FileReader(file))){
-            while((line = reader.readLine()) != null){
+            while((line = reader.readLine()) != null && !line.isEmpty()){
                 if(i % 2 == 0){
                     mealNames.add(line);
                     numberOfMeals++;
